@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../../assets/images/icons/logo.png'
 import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
+import { UserContext } from '../../../AuthProviders/AuthProvider';
 
 const Header = () => {
+    const {user, logOUt} = useContext(UserContext);
+    const handleOut =()=>{
+        logOUt();
+    }
     return (
         <nav className=' bg-black bg-opacity-60 px-6 lg:px-10 2xl:px-14'>
             <div className="navbar">
@@ -44,7 +49,12 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link className="myBtn" to="/login">Login</Link>
+                    {
+                        user ? 
+                        <Link className="myBtn" to="/login" onClick={handleOut}>Log out</Link>
+                        : 
+                        <Link className="myBtn" to="/login">Login</Link>
+                    }
                 </div>
             </div>
         </nav>
