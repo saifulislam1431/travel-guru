@@ -3,11 +3,27 @@ import logo from '../../../assets/images/icons/logo.png'
 import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { UserContext } from '../../../AuthProviders/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Header = () => {
     const {user, logOUt} = useContext(UserContext);
     const handleOut =()=>{
-        logOUt();
+        logOUt()
+        .then(()=>{
+            toast.success('Logout Successful!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
     }
     return (
         <nav className=' bg-black bg-opacity-60 px-6 lg:px-10 2xl:px-14'>

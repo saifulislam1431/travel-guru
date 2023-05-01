@@ -1,22 +1,68 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../AuthProviders/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [type, setType] = useState('password');
     const [show, setShow] = useState(false);
+    const { signInUser, googleSignIn, facebookSignIn, resetPass } = useContext(UserContext);
+    const navigate = useNavigate();
+
     const handleShow = () => {
         setType('text')
     }
     const handleHide = () => {
         setType('password')
     }
+
+
+    const handleLogIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email ,  password);
+
+        signInUser(email , password)
+        .then(res=>{
+            const loggedUser = res.user;
+            toast.success('Registration Successful!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+                form.reset();
+                navigate("/");
+
+        })
+        .catch((error)=>{
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+    }
+
+
     return (
         <section className='my-14 px-10'>
             <div className='flex items-center justify-center my-16'>
                 <div>
                     <h2 className='text-center my-8 font-bold text-4xl tracking-wide' style={{ fontFamily: ['Bebas Neue', 'cursive'] }}>Login</h2>
-                    <form className='flex flex-col'>
+                    <form className='flex flex-col' onSubmit={handleLogIn}>
                         <label htmlFor="email" className='mb-2 font-medium text-gray-600'>Email:</label>
                         <input type="email" id="email" name="email" className='border border-gray-300 rounded-md outline-none bg-gray-300 bg-opacity-50  focus:border-0 py-2' />
                         <label htmlFor="password" className='mt-4 mb-2 font-medium text-gray-600'>Password:</label>
