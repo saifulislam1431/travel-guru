@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
   font-family: 'Poppins', sans-serif;
@@ -9,3 +9,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.myBtn{
+  @apply bg-secondary text-black py-2 px-3 rounded-md border-secondary hover:bg-secondary hover:bg-opacity-75 hover:border-secondary hover:border-opacity-75 font-medium capitalize
+}
