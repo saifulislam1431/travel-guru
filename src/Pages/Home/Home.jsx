@@ -31,21 +31,21 @@ const Home = () => {
                 </div>
                 <div className="mt-5">
                     <div ref={sliderRef} className='keen-slider'>
-                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl">
+                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl" to="/coxsbazar">
                         <img src={slideImg1} alt="" className='w-full '/>
                         <div className='rounded-md absolute  top-0 left-0 w-full h-full flex items-end' style={{ background: 'linear-gradient(0.12deg, #000000 0.1%, rgba(0, 0, 0, 0) 69.96%)' }}>
                             <h5 className='mb-5 ml-2 text-white text-xl md:text-2xl' style={{ fontFamily: ['Bebas Neue', 'cursive'] }}>Cox'Bazar</h5>
                         </div>
                     </Link>
 
-                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl">
+                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl" to="/sreemangol">
                         <img src={slideImg2} alt="" className='w-full '/>
                         <div className='rounded-md absolute  top-0 left-0 w-full h-full flex items-end' style={{ background: 'linear-gradient(0.12deg, #000000 0.1%, rgba(0, 0, 0, 0) 69.96%)' }}>
                             <h5 className='mb-5 ml-2 text-white text-xl md:text-2xl' style={{ fontFamily: ['Bebas Neue', 'cursive'] }}>Sreemangol</h5>
                         </div>
                     </Link>
 
-                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl">
+                    <Link className="keen-slider__slide number-slide1 hover:border-2 hover:border-secondary rounded-xl" to="/sundorban">
                         <img src={slideImg3} alt="" className='w-full'/>
                         <div className='rounded-md absolute  top-0 left-0 w-full h-full flex items-end' style={{ background: 'linear-gradient(0.12deg, #000000 0.1%, rgba(0, 0, 0, 0) 69.96%)' }}>
                             <h5 className='mb-5 ml-2 text-white text-xl md:text-2xl' style={{ fontFamily: ['Bebas Neue', 'cursive'] }}>Sundorban</h5>
