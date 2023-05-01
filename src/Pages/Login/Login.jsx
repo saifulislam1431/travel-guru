@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../AuthProviders/AuthProvider';
@@ -9,6 +9,7 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const { signInUser, googleSignIn, facebookSignIn, resetPass } = useContext(UserContext);
     const navigate = useNavigate();
+    const emailRef = useRef();
 
     const handleShow = () => {
         setType('text')
@@ -28,7 +29,7 @@ const Login = () => {
         signInUser(email , password)
         .then(res=>{
             const loggedUser = res.user;
-            toast.success('Registration Successful!', {
+            toast.success('Login Successful!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -56,6 +57,98 @@ const Login = () => {
         })
     }
 
+    const handleGoogleLogIn = ()=>{
+        googleSignIn()
+        .then(res=>{
+            const loggedUser = res.user;
+            toast.success('Login Successful!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+                navigate("/");
+
+        })
+        .catch((error)=>{
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+    }
+
+    const handleFacebookLogIn = ()=>{
+        facebookSignIn()
+        .then(res=>{
+            const loggedUser = res.user;
+            toast.success('Login Successful!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+                navigate("/");
+
+        })
+        .catch((error)=>{
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+    }
+
+    const forgetPassword = ()=>{
+        const email = emailRef.current.value;
+        resetPass(email)
+        .then(()=>{
+            toast.success('Reset Email send!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+
+        })
+        .catch((error)=>{
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+    }
+
 
     return (
         <section className='my-14 px-10'>
@@ -64,7 +157,7 @@ const Login = () => {
                     <h2 className='text-center my-8 font-bold text-4xl tracking-wide' style={{ fontFamily: ['Bebas Neue', 'cursive'] }}>Login</h2>
                     <form className='flex flex-col' onSubmit={handleLogIn}>
                         <label htmlFor="email" className='mb-2 font-medium text-gray-600'>Email:</label>
-                        <input type="email" id="email" name="email" className='border border-gray-300 rounded-md outline-none bg-gray-300 bg-opacity-50  focus:border-0 py-2' />
+                        <input type="email" id="email" name="email" className='border border-gray-300 rounded-md outline-none bg-gray-300 bg-opacity-50  focus:border-0 py-2' ref={emailRef}/>
                         <label htmlFor="password" className='mt-4 mb-2 font-medium text-gray-600'>Password:</label>
                         <span className='flex items-center '>
                             <input type={type}
@@ -82,19 +175,19 @@ const Login = () => {
                     <div className='flex flex-col'>
                         <p className='text-center font-medium'>Or login with:</p>
                         <div className='my-2'>
-                            <span type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 cursor-pointer">
+                            <span type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 cursor-pointer" onClick={handleGoogleLogIn}>
                                 <FaGoogle className='mr-2' />
                                 Sign in with Google
                             </span>
 
-                            <span className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 cursor-pointer">
+                            <span className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 cursor-pointer" onClick={handleFacebookLogIn}>
                                 <FaFacebook className='mr-2' /> Sign in with Facebook
                             </span>
 
 
 
                         </div>
-                        <span className='my-2 font-medium text-red-500 underline'>Forgot password?</span>
+                        <span className='my-2 font-medium text-red-500 underline' onClick={forgetPassword}>Forgot password?</span>
                         <p className='font-medium'>Don't have an account? <Link to="/register" className='text-secondary'>Create one</Link></p>
                     </div>
                 </div>
