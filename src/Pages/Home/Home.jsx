@@ -25,7 +25,7 @@ const Home = () => {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold text-white">Find your next stay</h1>
                     <p className="my-8 text-white">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <Link to="/login">
+                    <Link to="/allRooms">
                         <button className="myBtn">Get Started</button>
                     </Link>
                 </div>

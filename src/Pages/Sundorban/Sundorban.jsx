@@ -39,7 +39,7 @@ const Sundorban = () => {
                                 />
                             </div>
                             <div className="form-control mt-6">
-                                <Link to="/">
+                                <Link to="/findRooms/sundarban">
                                 <button className="btn myBtn w-full">Start Booking</button>
                                 </Link>
                             </div>

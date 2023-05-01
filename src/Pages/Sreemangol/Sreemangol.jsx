@@ -39,7 +39,7 @@ const Sreemangol = () => {
                                     />
                                 </div>
                                 <div className="form-control mt-6">
-                                    <Link to="/">
+                                    <Link to="/findRooms/sreemangal">
                                     <button className="btn myBtn w-full">Start Booking</button>
                                     </Link>
                                 </div>
